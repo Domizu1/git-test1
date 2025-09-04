@@ -32,3 +32,32 @@ ScrollReveal().reveal('.contact-card', {
   opacity: 0,
   reset: false
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.querySelector(".menu-toggle");
+  const sideNav = document.querySelector(".side-nav");
+  const closeBtn = document.querySelector(".side-nav .close-btn");
+
+  toggle.addEventListener("click", () => {
+    sideNav.classList.add("show");
+    toggle.setAttribute("aria-expanded", "true");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    sideNav.classList.remove("show");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+
+  sideNav.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      sideNav.classList.remove("show");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") sideNav.classList.remove("show");
+  });
+});
+
+
